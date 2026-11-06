@@ -62,7 +62,7 @@ body { background: #000; color: var(--white); font-family: var(--font); overflow
 .slide.active .zoom { animation: zoom var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms); }
 .slide.active .pop  { animation: pop var(--t-mid) var(--ease-spring) both; animation-delay: calc(var(--d, 0) * 1ms); }
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
-@keyframes zoom { from { opacity: 0; transform: scale(1.35); filter: blur(24px); } 60% { filter: blur(2px); } }
+@keyframes zoom { from { opacity: 0; transform: scale(1.06); } }
 @keyframes pop  { from { opacity: 0; transform: scale(.4); } }
 @keyframes draw { from { transform: scaleX(0); } }
 @keyframes down { from { transform: scaleY(0); } }
@@ -103,7 +103,7 @@ body { background: #000; color: var(--white); font-family: var(--font); overflow
 .slide.active .stage .figure { animation: enter 1.2s var(--ease-out) .35s both; }
 .slide.active .stage .pool { animation: fadein 1.2s var(--ease-out) .3s both; }
 @keyframes fadein { from { opacity: 0; } }
-@keyframes enter { from { opacity: 0; transform: translateX(-50%) translateY(26px) scale(.97); filter: blur(10px); } }
+@keyframes enter { from { opacity: 0; transform: translateX(-50%) translateY(16px); } }
 
 .copy {
   position: relative; z-index: 2;
@@ -1153,11 +1153,51 @@ body.lite .slide.divider.active::after, body.lite .slide.hero-slide.active::afte
   .slide.divider.active .dv-title, .slide.divider.active .dv-num, .slide.divider.active::after, .slide.hero-slide.active::after, .slide.divider.active .dv-sweep { animation: none !important; }
 }
 
+/* ---------- Netflix pass, phase 3: cover, intro, big-question cards, end cards ---------- */
+/* cover + thank you: template red kept; opening-title fade-up instead of a zoom */
+.slide.redbg.active .cv-title, .slide.redbg.active .ty-title { animation: title-up 2.4s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms); }
+@keyframes title-up { from { opacity: 0; transform: translateY(24px); } }
+/* intro: character introduction. Name as a bold lower third, timeline styled like credits */
+.slide.intro .kicker .eyebrow { letter-spacing: .35em; }
+.slide.intro .hello span:first-child { font-size: 44px; font-weight: 400; letter-spacing: -.01em; color: var(--grey-3); }
+.slide.intro .hello .name { color: var(--white); font-size: 84px; }
+.slide.intro .role { font-size: 22px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--grey-3); padding-left: 22px; border-left: 3px solid var(--red); }
+.slide.intro .edu { font-size: 18px; color: var(--grey-2); }
+.slide.intro .yr { font-size: 30px; font-weight: 400; color: var(--grey-3); letter-spacing: 0; }
+.slide.intro .journey li.now .yr { color: var(--red); font-weight: 700; }
+.slide.intro .node i { width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; background: var(--grey-2); box-shadow: none; }
+.slide.intro .journey.tl li.now .node i { background: var(--red); box-shadow: 0 0 0 5px rgba(199, 0, 11, .25); }
+.slide.intro .journey.tl li:not(:first-child) .node::before { width: 1px; margin-left: -.5px; background: var(--grey-1); }
+.slide.intro .ico { border-color: rgba(var(--tint), .14); background: none; }
+.slide.intro .ico svg { stroke: var(--grey-3); stroke-width: 1.4; }
+.slide.intro .journey li.now .ico svg { stroke: var(--white); }
+.slide.intro .journey.tl .txt b em.ab { font-size: .68em; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--grey-2); }
+.slide.intro .journey.tl .txt b em.mr { font-size: .68em; letter-spacing: .16em; text-transform: uppercase; }
+/* two questions (5): big-question card, centred on a black screen */
+.slide.qs .arc, .slide.qa .arc { display: none; }
+.slide.qs > .fit { margin-top: auto; margin-bottom: auto; }
+.slide.qs .qlist { margin-top: 56px; gap: 64px; }
+.slide.qs .q .qn { font-size: 20px; letter-spacing: .35em; }
+.slide.qs .q.shown { animation: rise var(--t-slow) var(--ease-out) both; }
+/* regret (52): long-pause reveals, same two clicks */
+.slide.rg-slide .rg-q { font-size: 28px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--grey-3); }
+.slide.rg-slide .rg-a.shown { animation: title-up 2.4s var(--ease-out) both; }
+.slide.rg-slide .rg-not.shown { animation: rise var(--t-slow) var(--ease-out) both; }
+/* Q&A (53): end card */
+.slide.qa .qa-mark { letter-spacing: -.02em; }
+.slide.qa .qa-wrap { gap: 64px; }
+.slide.qa .qa-sub { font-size: 22px; letter-spacing: .2em; text-transform: uppercase; color: var(--grey-3); }
+body.lite .slide.redbg.active .cv-title, body.lite .slide.redbg.active .ty-title, body.lite .slide.qs .q.shown,
+body.lite .slide.rg-slide .rg-a.shown, body.lite .slide.rg-slide .rg-not.shown { animation: rise-lite .35s var(--ease-out) both; }
+@media (prefers-reduced-motion: reduce) {
+  .slide.redbg.active .cv-title, .slide.redbg.active .ty-title, .slide.qs .q.shown, .slide.rg-slide .rg-a.shown, .slide.rg-slide .rg-not.shown { animation: none !important; }
+}
+
 /* ---------- cinematic layers (Netflix-documentary pass): vignette + film grain ---------- */
 /* inside #frame: above the slides (z 2), below the logo (z 6); the controls sit outside the frame */
 .fx { position: absolute; inset: 0; pointer-events: none; transition: opacity var(--t-fast) var(--ease-out); }
 .fx-vignette { z-index: 3; background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .35) 100%); }
-.fx-grain { z-index: 4; inset: -50%; opacity: .06; mix-blend-mode: overlay; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0 / 240px 240px;
+.fx-grain { z-index: 4; inset: -50%; opacity: .05; mix-blend-mode: screen; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2.2' intercept='-.6'/%3E%3CfeFuncG type='linear' slope='2.2' intercept='-.6'/%3E%3CfeFuncB type='linear' slope='2.2' intercept='-.6'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0 / 240px 240px;
   animation: grain 1s steps(1) infinite; }
 @keyframes grain { 0% { transform: translate(0, 0); } 17% { transform: translate(-5%, -10%); } 33% { transform: translate(-15%, 5%); }
   50% { transform: translate(7%, -25%); } 67% { transform: translate(-5%, 25%); } 83% { transform: translate(15%, 0); } }
