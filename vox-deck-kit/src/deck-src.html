@@ -1315,6 +1315,147 @@ body.light .slide.intro .hello .name { color: #1E1B18; }
 .slide.intro .journey.tl .txt .when { font-family: var(--type); font-weight: 700; font-size: 18px; letter-spacing: .04em; color: var(--ink2); margin: 2px 0 3px; }
 .slide.intro .journey.tl .txt span:last-child { font-family: var(--head); font-weight: 400; font-size: 22px; line-height: 1.22; color: var(--ink); max-width: none; }
 .slide.intro .journey.tl li.now .txt b { font-weight: 700; }
+
+/* ---------- generic content slide frame ---------- */
+.slide.why { padding: 60px 110px 96px; }
+.slide.why > .fit { margin: 0; max-width: none; width: 100%; height: 100%; gap: 26px; }
+.slide.why .why-title { font-size: 116px; }
+
+/* ---------- paper cards (6 to 9) ---------- */
+.slide .card { overflow: visible; background: var(--card); border: 0; border-radius: 2px; box-shadow: var(--lift); transform: rotate(var(--rot, 0deg)); }
+.slide .card::before { top: -22px; left: 50%; right: auto; width: 150px; height: 44px; margin-left: -75px; background: var(--tape); box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(-3deg); animation: none !important; z-index: 2; }
+.slide .card .art, .slide .card.mini .art { background: none; border: 0; border-radius: 0; }
+.slide .cards > .card:nth-of-type(4n+1) { --rot: -1.4deg; } .slide .cards > .card:nth-of-type(4n+2) { --rot: 1.1deg; }
+.slide .cards > .card:nth-of-type(4n+3) { --rot: -.7deg; } .slide .cards > .card:nth-of-type(4n+4) { --rot: 1.5deg; }
+.slide .card h3 { font-family: var(--head); font-weight: 700; text-transform: uppercase; letter-spacing: 0; line-height: 1; color: var(--ink); }
+.slide .card h3 .r { color: var(--red); }
+.slide .card p { font-family: var(--head); font-weight: 400; color: var(--ink); }
+.slide .cards { position: relative; }
+.pen.pen-link { width: 110px; height: 56px; z-index: 4; }
+.pen.pen-link path { stroke-width: 6; }
+
+/* 5: two big question cards linked by an arrow */
+.slide.qs > .fit { justify-content: center; }
+.slide.qs .kicker { position: absolute; left: 0; top: 0; }
+.slide.qs .qlist { position: relative; margin: 50px 0 0; gap: 110px; }
+.slide.qs .q { position: relative; display: block; width: 1560px; padding: 50px 60px 54px 170px; background: var(--card); box-shadow: var(--lift); }
+.slide.qs .q:nth-of-type(1) { --rot: -1.2deg; transform: rotate(-1.2deg); }
+.slide.qs .q:nth-of-type(2) { --rot: 1deg; transform: rotate(1deg); margin-left: 140px; }
+.slide.qs .q::after { content: ""; position: absolute; top: -22px; left: 46%; width: 160px; height: 44px; background: var(--tape); box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(-3deg); }
+.slide.qs .q .qn { position: absolute; left: 52px; top: 50%; margin-top: -58px; width: 96px; height: 116px; display: grid; place-items: center;
+  font-family: var(--head); font-weight: 700; font-size: 96px; line-height: 1; letter-spacing: 0; color: var(--red); }
+.slide.qs .q p { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 124px; line-height: .98; letter-spacing: 0; color: var(--ink); }
+.slide.qs .q p .r { color: var(--red); }
+.slide.qs .pen-arrow { left: 30px; top: 250px; width: 150px; height: 200px; }
+
+/* 6: three reasons as big taped polaroids */
+.slide .why-title.two { font-size: 116px; }
+.slide .cards.three { flex: 1; gap: 70px; margin-top: 30px; align-items: stretch; }
+.slide .cards.three .card.pic { padding: 30px 30px 34px; gap: 22px; justify-content: space-between; }
+.slide .cards.three .art { aspect-ratio: auto; flex: 1; }
+.slide .cards.three .card.pic h3 { font-size: 64px; white-space: normal; }
+.slide .cards.three .pen-link.l1 { left: calc(33.3% - 70px); top: 46%; }
+.slide .cards.three .pen-link.l2 { left: calc(66.6% - 50px); top: 40%; }
+
+/* 7: comfort zone, four taped notes */
+.slide .cards4 { flex: 1; gap: 40px 50px; margin-top: 16px; }
+.slide .cards4 .card.mini { padding: 26px 30px; gap: 26px; align-items: center; }
+.slide .cards4 .card.mini .art { flex: 0 0 34%; width: 34%; }
+.slide .cards4 .card.mini h3 { font-size: 50px; }
+.slide .cards4 .card.mini p { font-size: 28px; line-height: 1.22; color: var(--ink); }
+.slide .card.mini .mtext { gap: 12px; }
+
+/* 8: culture in two parts, two large polaroids */
+.slide .cards:not(.three):not(.cards4):not(.cards5) { flex: 1; gap: 120px; margin-top: 24px; }
+.slide .cards:not(.three):not(.cards4):not(.cards5) .card.pic { padding: 34px 34px 40px; gap: 26px; }
+.slide .cards:not(.three):not(.cards4):not(.cards5) .art { flex: 1; aspect-ratio: auto; }
+.slide .cards:not(.three):not(.cards4):not(.cards5) .card.pic h3 { font-size: 84px; }
+.slide .cards:not(.three):not(.cards4):not(.cards5) > .pen-link.l1 { left: calc(50% - 60px); top: 44%; width: 120px; }
+
+/* 9: China culture, eight polaroids in a loose grid */
+.slide .cards5 { flex: 1; gap: 34px 30px; margin-top: 14px; }
+.slide .cards5 .card.mini { padding: 16px 18px 20px; gap: 12px; }
+.slide .cards5 .card.mini .art { height: 150px; }
+.slide .cards5 .card.mini h3 { font-size: 38px; }
+.slide .cards5 .card.mini p { font-size: 22px; line-height: 1.2; color: var(--ink); }
+
+/* 10: two companies, a newspaper clipping with torn paper bars */
+.slide .co-title { font-size: 116px; }
+.slide .co-grid { position: relative; flex: 1; margin-top: 4px; padding: 26px 50px 30px; background: var(--card); box-shadow: var(--lift); transform: rotate(-.4deg); gap: 0; justify-content: space-between; }
+.slide .co-grid::after { content: ""; position: absolute; top: -20px; left: 47%; width: 160px; height: 44px; background: var(--tape); clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(-2deg); }
+.slide .co-head, .slide .co-row { grid-template-columns: minmax(0, 1fr) 300px minmax(0, 1fr); column-gap: 30px; }
+.slide .co-head span { font-family: var(--type); font-weight: 700; font-size: 46px; letter-spacing: .12em; text-transform: uppercase; }
+.slide .co-row { padding: 8px 0; border-top: 2px dashed rgba(var(--tint), .25); }
+.slide .co-l { font-family: var(--type); font-weight: 700; font-size: 22px; letter-spacing: .08em; color: var(--ink2); }
+.slide .co-v { font-family: var(--head); font-weight: 700; font-size: 46px; line-height: 1; letter-spacing: 0; color: var(--ink); }
+.slide .co-v.txt { font-weight: 500; font-size: 32px; }
+.slide .co-v.txt.sm { font-size: 28px; }
+.slide .co-v small { font-family: var(--type); font-weight: 400; font-size: 22px; color: var(--ink2); }
+.slide .co-v small b.yrs { color: var(--ink); }
+.slide .co-bar { height: 16px; border-radius: 0; clip-path: polygon(0 18%, 6% 0, 14% 14%, 23% 2%, 33% 16%, 44% 0, 55% 12%, 66% 2%, 77% 16%, 88% 4%, 100% 12%, 100% 86%, 92% 100%, 81% 88%, 70% 100%, 58% 86%, 46% 98%, 34% 86%, 22% 100%, 11% 88%, 0 96%); }
+.ringed { position: relative; display: inline-block; }
+.pen.pen-ring { left: -34px; right: -34px; top: -22px; bottom: -22px; width: calc(100% + 68px); height: calc(100% + 44px); }
+.pen.pen-ring path { stroke-width: 5; }
+
+/* 11: growth, two big-number clippings and a hand-annotated chart */
+.slide .gr-wrap { flex: 1; grid-template-columns: 460px minmax(0, 1fr); gap: 36px; margin-top: 4px; align-items: stretch; }
+.slide .gr-stats { gap: 34px; justify-content: center; }
+.slide .gr-stat { background: var(--card); border: 0; border-radius: 2px; box-shadow: var(--lift); padding: 22px 30px 24px; overflow: visible; }
+.slide .gr-stat.a { --rot: -1.5deg; transform: rotate(-1.5deg); } .slide .gr-stat.m { --rot: 1.2deg; transform: rotate(1.2deg); }
+.slide .gr-stat::before { left: 0; top: 0; bottom: 0; width: 8px; }
+.slide .gr-who { font-family: var(--type); font-weight: 700; font-size: 26px; letter-spacing: .2em; }
+.slide .gr-big { display: flex; flex-wrap: wrap; align-items: baseline; white-space: nowrap; font-family: var(--head); font-weight: 700; font-size: 150px; line-height: .95; letter-spacing: 0; margin: 4px 0 6px; color: var(--ink); padding: 0 .04em; }
+.slide .gr-big small { font-family: var(--hand); font-weight: 400; font-size: 36px; color: var(--red); margin: 6px 0 0 6px; flex-basis: 100%; transform: rotate(-3deg); transform-origin: left; display: inline-block; line-height: 1; }
+.slide .gr-sub { font-family: var(--head); font-weight: 400; font-size: 26px; line-height: 1.25; color: var(--ink); }
+.slide .gr-sub b { font-weight: 700; color: var(--ink); }
+.slide .gr-chart { position: relative; padding: 24px 26px 10px; background: var(--card); box-shadow: var(--lift); transform: rotate(.5deg); }
+.slide .gr-chart::after { content: ""; position: absolute; top: -20px; left: 78%; width: 160px; height: 44px; background: var(--tape); clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(3deg); }
+.slide .gr-legend { font-family: var(--type); font-weight: 700; font-size: 22px; color: var(--ink2); gap: 24px; flex-wrap: wrap; justify-content: flex-start; }
+.slide .gr-legend i { border-radius: 0; }
+.slide .gr-svg { max-height: none; }
+.slide .gr-grid { stroke: rgba(var(--tint), .22); stroke-dasharray: 6 8; stroke-width: 1.5; }
+.slide .gr-grid.zero { stroke: var(--ink); stroke-dasharray: none; stroke-width: 2.5; }
+.slide .gr-b rect { rx: 0; }
+/* chart labels: the chart is a little narrower than in the approved deck, so every label is sized up to render at least as large as before */
+.slide .gr-svg text { font-family: var(--head); }
+.slide .gr-ax { font-size: 20px; fill: var(--ink2); }
+.slide .gr-b text { font-size: 22px; fill: var(--ink); }
+.slide .gr-base { font-size: 18px; fill: var(--ink2); }
+.slide .gr-rev { font-size: 20px; } .slide .gr-usd { font-size: 20px; fill: var(--ink2); } .slide .gr-revlbl { font-size: 18px; fill: var(--ink2); }
+.slide .gr-yr { font-size: 28px; fill: var(--ink); }
+.slide .gr-ring { fill: none; stroke: var(--red); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.slide.active .gr-chart.shown .gr-ring { animation: pen 1s ease-out 1.2s forwards; }
+.slide .gr-take { position: absolute; left: 570px; right: 0; bottom: 0; margin: 0; font-family: var(--head); font-weight: 500; font-size: 38px; line-height: 1.15; text-align: left; color: var(--ink); }
+.slide .gr-take b { font-weight: 700; color: var(--ink); }
+.slide .gr-take .r { color: var(--red); }
+.slide:has(.gr-take) .gr-wrap { margin-bottom: 70px; }
+
+/* 13 to 17: longer comparison texts */
+.slide .vx-side.mr .vm { font-family: var(--head); font-weight: 500; font-size: 34px; line-height: 1.15; margin-bottom: 14px; color: var(--ink); }
+.slide .vx-side.mr .vm em { font-family: var(--type); font-weight: 700; font-size: 22px; letter-spacing: .14em; color: var(--red); margin-bottom: 2px; }
+.slide .vx-side.mr .vnote { font-family: var(--hand); font-weight: 400; font-size: 38px; line-height: 1.1; color: var(--red); margin-top: 4px; transform: rotate(-3deg); transform-origin: left; }
+.slide .vx-side:has(.vm) p { font-size: 34px; }
+.slide .vx-side:has(.vm) .va { height: 150px; }
+
+/* 18: new challenge, paper strips with arrows */
+.slide .nc { flex: 1; gap: 26px; margin-top: 6px; justify-content: center; }
+.slide .nc-head, .slide .nc-row { grid-template-columns: minmax(0, 1fr) 270px minmax(0, 1fr); column-gap: 30px; }
+.slide .nc-role .who { font-family: var(--type); font-weight: 700; font-size: 26px; letter-spacing: .2em; }
+.slide .nc-role b { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 76px; line-height: .95; letter-spacing: 0; color: var(--ink); }
+.slide .nc-role > span:last-child { font-family: var(--head); font-weight: 400; font-size: 28px; color: var(--ink2); }
+.slide .nc-a, .slide .nc-m { overflow: visible; border: 0; border-radius: 0; background: var(--card); box-shadow: var(--lift); padding: 20px 34px; }
+.slide .nc-row:nth-of-type(odd) .nc-a { transform: rotate(-.8deg); } .slide .nc-row:nth-of-type(even) .nc-a { transform: rotate(.7deg); }
+.slide .nc-row:nth-of-type(odd) .nc-m { transform: rotate(.9deg); } .slide .nc-row:nth-of-type(even) .nc-m { transform: rotate(-.6deg); }
+.slide .nc-a::before, .slide .nc-m::before { width: 8px; }
+.slide .nc-a b, .slide .nc-m b { font-family: var(--head); font-weight: 700; font-size: 50px; line-height: 1.02; letter-spacing: 0; color: var(--ink); }
+.slide .nc-a span, .slide .nc-m span { font-family: var(--head); font-weight: 400; font-size: 28px; color: var(--ink2); }
+.slide .nc-ico { width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--ink); background: none; }
+.slide .nc-lbl { font-family: var(--type); font-weight: 700; font-size: 24px; letter-spacing: .14em; color: var(--ink); }
+.slide .nc-arrow { width: 170px; height: 34px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 170 34'%3E%3Cpath d='M4 22 C 50 6, 110 30, 160 16 M142 4 L162 16 L140 28' fill='none' stroke='%23C7000B' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+.slide .nc-arrow::after { display: none; }
+.slide .nc-row.shown .nc-a, .slide .nc-row.shown .nc-m, .slide .nc-row.shown .nc-mid, .slide .nc-row.shown .nc-arrow { animation: none; }
 /* =============== /EXPLAINER PASS =============== */
 </style>
 </head>
@@ -1429,7 +1570,7 @@ body.light .slide.intro .hello .name { color: #1E1B18; }
       <div class="kicker"><i class="rule" style="--d:100"></i><span class="eyebrow rise" style="--d:150">Two questions</span></div>
       <div class="qlist">
         <div class="q step" data-step="1"><span class="qn">1</span><p>Why I left <span class="abt">Abbott</span> and joined <span class="r">Mindray</span>?</p></div>
-        <div class="q step" data-step="2"><span class="qn">2</span><p>Do I regret my decision?</p></div>
+        <div class="q step" data-step="2"><span class="qn">2</span><p>Do I <span class="hl">regret</span> my decision?</p></div><svg class="pen pen-arrow" viewBox="0 0 220 260" aria-hidden="true"><path pathLength="1" d="M60 10 C 10 80, 20 170, 150 225"/><path pathLength="1" d="M118 196 L 152 226 L 108 238"/></svg>
       </div>
     </div>
   </section>
@@ -1442,7 +1583,7 @@ body.light .slide.intro .hello .name { color: #1E1B18; }
 
     <div class="fit">
       <h2 class="why-title zoom two" style="--d:200">Why I left <span class="abt">Abbott</span> and joined <span class="r">Mindray</span>?</h2>
-      <div class="cards three">
+      <div class="cards three"><svg class="pen pen-link l1" viewBox="0 0 120 60" aria-hidden="true"><path pathLength="1" d="M6 36 C 36 14, 70 14, 108 30"/><path pathLength="1" d="M88 14 L 110 30 L 86 44"/></svg><svg class="pen pen-link l2" viewBox="0 0 120 60" aria-hidden="true"><path pathLength="1" d="M6 36 C 36 14, 70 14, 108 30"/><path pathLength="1" d="M88 14 L 110 30 L 86 44"/></svg>
         <article class="card pic step" data-step="1">
           <div class="art"><svg viewBox="0 0 400 250" aria-hidden="true"><circle class="cz" pathLength="1" cx="145" cy="138" r="78"/><text class="czl" x="145" y="122">COMFORT ZONE</text><circle class="me0" cx="145" cy="150" r="9"/><path class="leave" pathLength="1" d="M145 150 C 200 156, 250 128, 300 92 S 345 60, 352 58"/><g class="me1"><circle cx="352" cy="58" r="11"/></g><path class="grow" d="M338 36 l14 -14 14 14 M352 22 v20"/></svg></div>
           <h3>Out of my <span class="r">comfort zone</span></h3>
@@ -1508,7 +1649,7 @@ body.light .slide.intro .hello .name { color: #1E1B18; }
     </svg>
     <div class="fit">
       <h2 class="why-title zoom" style="--d:200">Culture, <span class="r">in two parts.</span></h2>
-      <div class="cards">
+      <div class="cards"><svg class="pen pen-link l1" viewBox="0 0 120 60" aria-hidden="true"><path pathLength="1" d="M6 36 C 36 14, 70 14, 108 30"/><path pathLength="1" d="M88 14 L 110 30 L 86 44"/></svg>
         <article class="card pic step" data-step="1">
           <div class="art"><svg viewBox="0 0 400 250" aria-hidden="true"><circle class="sun" cx="92" cy="72" r="24"/><path class="hill" d="M0 200 Q70 150 130 178 T250 160 T400 168"/><path class="crenel" d="M20 209 L70 174 L110 190 L160 136 L205 156 L250 106 L300 132 L350 90 L390 114"/><path class="wall" pathLength="1" d="M20 215 L70 180 L110 196 L160 142 L205 162 L250 112 L300 138 L350 96 L390 120"/><path class="wall-in" pathLength="1" d="M20 215 L70 180 L110 196 L160 142 L205 162 L250 112 L300 138 L350 96 L390 120"/><g class="tower" style="--i:0"><rect x="151" y="118" width="18" height="22"/><path d="M151 118 v-4 h4 v4 h5 v-4 h4 v4 h5 v-4 h4 v4"/></g><g class="tower" style="--i:1"><rect x="241" y="88" width="18" height="22"/><path d="M241 88 v-4 h4 v4 h5 v-4 h4 v4 h5 v-4 h4 v4"/></g><g class="tower" style="--i:2"><rect x="341" y="72" width="18" height="22"/><path d="M341 72 v-4 h4 v4 h5 v-4 h4 v4 h5 v-4 h4 v4"/></g><path class="ground" d="M0 230 H400"/></svg></div>
           <h3>China <span class="r">Culture</span></h3>
@@ -1632,7 +1773,7 @@ body.light .slide.intro .hello .name { color: #1E1B18; }
         <div class="co-row step" data-step="7">
           <div class="co-a"><div class="co-v">6.6% <small>$2.9B</small></div><i class="co-bar" style="--w:61%"></i></div>
           <div class="co-l">R&amp;D share</div>
-          <div class="co-m"><div class="co-v">10.8% <small>$0.5B</small></div><i class="co-bar" style="--w:100%"></i></div>
+          <div class="co-m"><div class="co-v"><span class="ringed">10.8%<svg class="pen pen-ring" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M112 8 C 50 2, 6 24, 8 52 S 60 98, 120 94 S 196 70, 192 44 S 150 4, 96 10 L 80 14"/></svg></span> <small>$0.5B</small></div><i class="co-bar" style="--w:100%"></i></div>
         </div>
       </div>
     </div>
@@ -1653,7 +1794,7 @@ body.light .slide.intro .hello .name { color: #1E1B18; }
         </div>
         <div class="gr-chart step" data-step="3">
           <div class="gr-legend"><span><i style="background:var(--abbott)"></i>Abbott</span><span><i style="background:var(--red)"></i>Mindray</span><span>Revenue growth, year on year (Abbott in $, Mindray in RMB ¥)</span></div>
-          <svg class="gr-svg" viewBox="0 20 1000 490" aria-hidden="true"><path class="gr-grid" d="M90 373.0 H990"/><text class="gr-ax" x="78" y="378.0">-10%</text><path class="gr-grid zero" d="M90 288.0 H990"/><text class="gr-ax" x="78" y="293.0">0%</text><path class="gr-grid" d="M90 203.0 H990"/><text class="gr-ax" x="78" y="208.0">+10%</text><path class="gr-grid" d="M90 118.0 H990"/><text class="gr-ax" x="78" y="123.0">+20%</text><text class="gr-base" x="165.0" y="274.0">base year</text><text class="gr-yr" x="165.0" y="430">2020</text><text class="gr-rev a" x="131.0" y="462">$34.6B</text><text class="gr-rev m" x="199.0" y="462">¥21.0B</text><g class="gr-b a pos" style="--i:0"><rect x="255" y="80.0" width="52" height="208.0" rx="5"/><text x="281" y="70.0">+24.5%</text></g><g class="gr-b m pos" style="--i:1"><rect x="323" y="116.5" width="52" height="171.5" rx="5"/><text x="349" y="106.5">+20.2%</text></g><text class="gr-yr" x="315.0" y="430">2021</text><text class="gr-rev a" x="281.0" y="462">$43.1B</text><text class="gr-rev m" x="349.0" y="462">¥25.3B</text><g class="gr-b a pos" style="--i:2"><rect x="405" y="276.6" width="52" height="11.4" rx="5"/><text x="431" y="266.6">+1.3%</text></g><g class="gr-b m pos" style="--i:3"><rect x="473" y="116.6" width="52" height="171.4" rx="5"/><text x="499" y="106.6">+20.2%</text></g><text class="gr-yr" x="465.0" y="430">2022</text><text class="gr-rev a" x="431.0" y="462">$43.7B</text><text class="gr-rev m" x="499.0" y="462">¥30.4B</text><g class="gr-b a neg" style="--i:4"><rect x="555" y="288.0" width="52" height="69.0" rx="5"/><text x="581" y="381.0">-8.1%</text></g><g class="gr-b m pos" style="--i:5"><rect x="623" y="160.2" width="52" height="127.8" rx="5"/><text x="649" y="150.2">+15.0%</text></g><text class="gr-yr" x="615.0" y="430">2023</text><text class="gr-rev a" x="581.0" y="462">$40.1B</text><text class="gr-rev m" x="649.0" y="462">¥34.9B</text><g class="gr-b a pos" style="--i:6"><rect x="705" y="249.0" width="52" height="39.0" rx="5"/><text x="731" y="239.0">+4.6%</text></g><g class="gr-b m pos" style="--i:7"><rect x="773" y="244.3" width="52" height="43.7" rx="5"/><text x="799" y="234.3">+5.1%</text></g><text class="gr-yr" x="765.0" y="430">2024</text><text class="gr-rev a" x="731.0" y="462">$42.0B</text><text class="gr-rev m" x="799.0" y="462">¥36.7B</text><g class="gr-b a pos" style="--i:8"><rect x="855" y="239.8" width="52" height="48.2" rx="5"/><text x="881" y="229.8">+5.7%</text></g><g class="gr-b m neg" style="--i:9"><rect x="923" y="288.0" width="52" height="79.7" rx="5"/><text x="949" y="391.7">-9.4%</text></g><text class="gr-yr" x="915.0" y="430">2025</text><text class="gr-rev a" x="881.0" y="462">$44.3B</text><text class="gr-rev m" x="949.0" y="462">¥33.3B</text><text class="gr-usd" x="949.0" y="486">($4.66B)</text><text class="gr-revlbl" x="78" y="462">Revenue</text></svg>
+          <svg class="gr-svg" viewBox="0 20 1000 490" aria-hidden="true"><path class="gr-grid" d="M90 373.0 H990"/><text class="gr-ax" x="78" y="378.0">-10%</text><path class="gr-grid zero" d="M90 288.0 H990"/><text class="gr-ax" x="78" y="293.0">0%</text><path class="gr-grid" d="M90 203.0 H990"/><text class="gr-ax" x="78" y="208.0">+10%</text><path class="gr-grid" d="M90 118.0 H990"/><text class="gr-ax" x="78" y="123.0">+20%</text><text class="gr-base" x="165.0" y="274.0">base year</text><text class="gr-yr" x="165.0" y="430">2020</text><text class="gr-rev a" x="131.0" y="462">$34.6B</text><text class="gr-rev m" x="199.0" y="462">¥21.0B</text><g class="gr-b a pos" style="--i:0"><rect x="255" y="80.0" width="52" height="208.0" rx="5"/><text x="281" y="70.0">+24.5%</text></g><g class="gr-b m pos" style="--i:1"><rect x="323" y="116.5" width="52" height="171.5" rx="5"/><text x="349" y="106.5">+20.2%</text></g><text class="gr-yr" x="315.0" y="430">2021</text><text class="gr-rev a" x="281.0" y="462">$43.1B</text><text class="gr-rev m" x="349.0" y="462">¥25.3B</text><g class="gr-b a pos" style="--i:2"><rect x="405" y="276.6" width="52" height="11.4" rx="5"/><text x="431" y="266.6">+1.3%</text></g><g class="gr-b m pos" style="--i:3"><rect x="473" y="116.6" width="52" height="171.4" rx="5"/><text x="499" y="106.6">+20.2%</text></g><text class="gr-yr" x="465.0" y="430">2022</text><text class="gr-rev a" x="431.0" y="462">$43.7B</text><text class="gr-rev m" x="499.0" y="462">¥30.4B</text><g class="gr-b a neg" style="--i:4"><rect x="555" y="288.0" width="52" height="69.0" rx="5"/><text x="581" y="381.0">-8.1%</text></g><g class="gr-b m pos" style="--i:5"><rect x="623" y="160.2" width="52" height="127.8" rx="5"/><text x="649" y="150.2">+15.0%</text></g><text class="gr-yr" x="615.0" y="430">2023</text><text class="gr-rev a" x="581.0" y="462">$40.1B</text><text class="gr-rev m" x="649.0" y="462">¥34.9B</text><g class="gr-b a pos" style="--i:6"><rect x="705" y="249.0" width="52" height="39.0" rx="5"/><text x="731" y="239.0">+4.6%</text></g><g class="gr-b m pos" style="--i:7"><rect x="773" y="244.3" width="52" height="43.7" rx="5"/><text x="799" y="234.3">+5.1%</text></g><text class="gr-yr" x="765.0" y="430">2024</text><text class="gr-rev a" x="731.0" y="462">$42.0B</text><text class="gr-rev m" x="799.0" y="462">¥36.7B</text><g class="gr-b a pos" style="--i:8"><rect x="855" y="239.8" width="52" height="48.2" rx="5"/><text x="881" y="229.8">+5.7%</text></g><g class="gr-b m neg" style="--i:9"><rect x="923" y="288.0" width="52" height="79.7" rx="5"/><text x="949" y="391.7">-9.4%</text></g><path class="gr-ring" pathLength="1" d="M958 274 C 910 272, 900 330, 904 372 S 952 408, 982 392 S 997 300, 966 278 L 946 284"/><text class="gr-yr" x="915.0" y="430">2025</text><text class="gr-rev a" x="881.0" y="462">$44.3B</text><text class="gr-rev m" x="949.0" y="462">¥33.3B</text><text class="gr-usd" x="949.0" y="486">($4.66B)</text><text class="gr-revlbl" x="78" y="462">Revenue</text></svg>
         </div>
       </div>
       <p class="gr-take step" data-step="4"><span class="r">Mindray</span> grew <b>almost twice as fast</b> over 5 years, but <b>fell 9.4% in 2025</b>.</p>
