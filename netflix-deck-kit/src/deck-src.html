@@ -803,17 +803,17 @@ body.lite .vx-side.shown .va * { animation-duration: .01s !important; animation-
 .cp-art text { font-family: var(--font); font-weight: 700; text-anchor: middle; }
 .cp-art .cp-lg { font-size: 18px; letter-spacing: 2px; fill: var(--grey-3); text-anchor: start; }
 .cp-core { fill: var(--red); } .cp-ct { font-size: 26px; fill: #fff; letter-spacing: 2px; }
-.cp-link { fill: none; stroke: rgba(var(--tint), .25); stroke-width: 3; stroke-dasharray: 1; }
-.cp-node { fill: rgba(var(--tint), .08); stroke: var(--grey-3); stroke-width: 3; } .cp-node.weak { stroke: var(--red); fill: rgba(199,0,11,.12); }
-.cp-bld { fill: none; stroke: var(--grey-4); stroke-width: 2.5; stroke-linejoin: round; }
+.cp-link { fill: none; stroke: rgba(var(--tint), .25); stroke-width: 2.1; stroke-dasharray: 1; }
+.cp-node { fill: rgba(var(--tint), .08); stroke: var(--grey-3); stroke-width: 2.1; } .cp-node.weak { stroke: var(--red); fill: rgba(199,0,11,.12); }
+.cp-bld { fill: none; stroke: var(--grey-4); stroke-width: 1.8; stroke-linejoin: round; }
 .cp-barbg { fill: rgba(var(--tint), .1); } .cp-bar { fill: var(--grey-3); } .cp-bar.weak { fill: var(--red); }
-.cp-cal { fill: rgba(var(--tint), .05); stroke: var(--grey-4); stroke-width: 4; } .cp-calh { stroke: var(--red); stroke-width: 10; } .cp-calr { stroke: var(--grey-4); stroke-width: 5; stroke-linecap: round; } .cp-art .cp-calt { font-size: 15px; letter-spacing: 1.5px; fill: var(--red); }
-.cp-scr { fill: rgba(var(--tint), .05); stroke: var(--grey-4); stroke-width: 4; }
-.cp-ax { fill: none; stroke: var(--grey-3); stroke-width: 3; }
+.cp-cal { fill: rgba(var(--tint), .05); stroke: var(--grey-4); stroke-width: 2.8; } .cp-calh { stroke: var(--red); stroke-width: 7; } .cp-calr { stroke: var(--grey-4); stroke-width: 3.5; stroke-linecap: round; } .cp-art .cp-calt { font-size: 15px; letter-spacing: 1.5px; fill: var(--red); }
+.cp-scr { fill: rgba(var(--tint), .05); stroke: var(--grey-4); stroke-width: 2.8; }
+.cp-ax { fill: none; stroke: var(--grey-3); stroke-width: 2.1; }
 .cp-col { fill: var(--grey-3); } .cp-col.red { fill: var(--red); }
-.cp-me { fill: var(--red); } .cp-ptr { stroke: var(--red); stroke-width: 4; stroke-linecap: round; }
+.cp-me { fill: var(--red); } .cp-ptr { stroke: var(--red); stroke-width: 2.8; stroke-linecap: round; }
 .cp-head { fill: rgba(var(--tint), .3); }
-.cp-route { fill: none; stroke: var(--red); stroke-width: 4; stroke-dasharray: 1; stroke-linecap: round; }
+.cp-route { fill: none; stroke: var(--red); stroke-width: 2.8; stroke-dasharray: 1; stroke-linecap: round; }
 .cp-pin { fill: var(--grey-4); } .cp-pin.red { fill: var(--red); }
 .cp-city { font-size: 22px; fill: var(--white); }
 .cp-pl { fill: var(--white); }
@@ -821,15 +821,15 @@ body.lite .vx-side.shown .va * { animation-duration: .01s !important; animation-
 .slide.active .cp-plane { animation: fly 2.2s var(--ease-out) .4s both; }
 @keyframes fly { 0% { offset-distance: 0%; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
 .cp-hq { fill: rgba(var(--tint), .18); } .cp-hq.red { fill: var(--red); }
-.cp-win { stroke: rgba(255,255,255,.8); stroke-width: 4; stroke-linecap: round; }
-.cp-ground { stroke: var(--grey-2); stroke-width: 3; }
-.cp-bdg { fill: var(--grey-2); } .cp-bdg.new { fill: none; stroke: var(--red); stroke-width: 4; stroke-dasharray: 10 8; }
-.cp-rib { fill: var(--grey-2); } .cp-rib.new { fill: none; stroke: var(--red); stroke-width: 3; stroke-dasharray: 8 6; }
+.cp-win { stroke: rgba(255,255,255,.8); stroke-width: 2.8; stroke-linecap: round; }
+.cp-ground { stroke: var(--grey-2); stroke-width: 2.1; }
+.cp-bdg { fill: var(--grey-2); } .cp-bdg.new { fill: none; stroke: var(--red); stroke-width: 2.8; stroke-dasharray: 10 8; }
+.cp-rib { fill: var(--grey-2); } .cp-rib.new { fill: none; stroke: var(--red); stroke-width: 2.1; stroke-dasharray: 8 6; }
 .cp-tk { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
 .cp-bdg:not(.new) ~ .cp-tk { stroke: #fff; }
 g:has(> .cp-bdg.new) .cp-tk { stroke: var(--red); opacity: .35; }
 .cp-plus { font-size: 120px; fill: var(--red); }
-.cp-key { fill: var(--grey-2); } .cp-key.new { fill: none; stroke: var(--red); stroke-width: 3; stroke-dasharray: 5 4; }
+.cp-key { fill: var(--grey-2); } .cp-key.new { fill: none; stroke: var(--red); stroke-width: 2.1; stroke-dasharray: 5 4; }
 .cp-art .pp, .cp-art .gx, .cp-art .gy { transform-box: fill-box; }
 .cp-art .pp { transform-origin: center; } .cp-art .gx { transform-origin: left center; } .cp-art .gy { transform-origin: center bottom; }
 .slide.active .cp-art .pp { animation: pop .7s var(--ease-spring) both; animation-delay: calc(var(--dl, 0s) + .3s); }
@@ -1239,6 +1239,48 @@ body.light .hr-num { background: linear-gradient(180deg, #1F1D1C 35%, #6B6A6A); 
 .slide.img-slide .imgs img { width: 1766px; height: 994px; object-fit: contain; border-radius: 4px; background: #fff;
   border: 1px solid rgba(var(--tint), .14); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .85), 0 12px 30px -12px rgba(0, 0, 0, .6); }
 body.light .slide.img-slide .imgs img { border-color: #DCDDDD; box-shadow: 0 30px 70px -30px rgba(20, 20, 30, .35); }
+
+/* ---------- Netflix pass, phase 7a: customer visits as B-roll with a lower third ---------- */
+/* visit slides are the ones with a "What I did" column (.vt-side) */
+.slide.why:has(.vt-side) { padding: 0; }
+.slide.why:has(.vt-side) > .fit { margin: 0; max-width: none; width: 100%; height: 100%; display: grid; gap: 0;
+  grid-template-columns: 1340px minmax(0, 1fr); grid-template-rows: 754px auto auto minmax(0, 1fr); }
+.slide.why:has(.vt-side) .vt { display: contents; }
+/* full-bleed footage from the top-left corner, fading into the stage (16:9, so 16:9 photos are not cropped) */
+.slide.why:has(.vt-side) .vt-photo, .slide.why:has(.vt-side) .vt-gal { grid-column: 1; grid-row: 1; height: 754px; z-index: 0; border-radius: 0; border: 0; box-shadow: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent), linear-gradient(to right, #000 90%, transparent);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to bottom, #000 70%, transparent), linear-gradient(to right, #000 90%, transparent); mask-composite: intersect; }
+.slide.why:has(.vt-side) .vt-gal { gap: 4px; }
+.slide.why:has(.vt-side) .vt-cell { border: 0; border-radius: 0; box-shadow: none; }
+.slide.why:has(.vt-side) .vt-gal.g2 { grid-template-rows: 754px; }
+.slide.why:has(.vt-side) .vt-gal.g3 { grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); }
+.slide.why:has(.vt-side) .vt-gal.g8 { grid-template-rows: minmax(0, 1.33fr) minmax(0, 1fr); }
+/* lower third: site name over the fade, short red rule + label */
+.slide.why:has(.vt-side) > .fit > .kicker { grid-column: 1; grid-row: 2; z-index: 2; margin: -96px 0 14px; padding-left: 80px; }
+.slide.why:has(.vt-side) > .fit > .why-title { grid-column: 1; grid-row: 3; z-index: 2; padding: 0 80px; font-size: 80px; }
+.slide.why:has(.vt-side) > .fit > .kicker, .slide.why:has(.vt-side) > .fit > .why-title { text-shadow: 0 2px 18px rgba(0, 0, 0, .7); }
+body.light .slide.why:has(.vt-side) > .fit > .kicker, body.light .slide.why:has(.vt-side) > .fit > .why-title { text-shadow: 0 2px 18px rgba(255, 255, 255, .8); }
+/* "What I did" as captions */
+.slide.why:has(.vt-side) .vt-side { grid-column: 2; grid-row: 1 / -1; align-self: center; padding: 0 80px 0 40px; }
+.slide.why:has(.vt-side) .vt-side h4 { letter-spacing: .35em; }
+.vt-list li { border: 0; border-radius: 0; background: none; background-image: none; box-shadow: none; padding: 14px 0; font-size: 30px; font-weight: 600; border-bottom: 1px solid rgba(var(--tint), .08); }
+.vt-list li i { width: 16px; height: 2px; border-radius: 0; margin-top: 18px; }
+.vt.sm .vt-list li { font-size: 24px; padding: 10px 0; }
+.vt.sm .vt-list li i { margin-top: 14px; }
+body.light .vt-list li { background: none; box-shadow: none; border-bottom-color: #E3E3E4; }
+
+/* ---------- Netflix pass, phase 7b: career plan as "what comes next" episode cards ---------- */
+.slide.cp-slide .kicker .eyebrow, .slide.gp-slide .kicker .eyebrow { letter-spacing: .35em; }
+.cp-art { border-radius: 10px; border-color: rgba(var(--tint), .08); background: radial-gradient(70% 70% at 50% 45%, rgba(var(--tint), .035), transparent 75%); box-shadow: none; background-image: none; }
+/* step number as an outlined numeral, like the chapter cards */
+.cp-n { color: transparent; -webkit-text-stroke: 2px var(--red); font-size: 220px; }
+.cp-t { font-size: 80px; letter-spacing: -.03em; }
+/* 47: thinner gap chart, flat solution card */
+.gp-track { height: 40px; border-radius: 0; border: 0; border-bottom: 1px solid rgba(var(--tint), .1); background: none; }
+.gp-band { top: 10px; bottom: 10px; left: 0; width: var(--b); border-radius: 0; }
+.gp-sol { border-radius: 10px; border-color: rgba(var(--tint), .09); background: rgba(var(--tint), .025); background-image: none; box-shadow: none; }
+.gp-sol::before { width: 2px; }
+body.light .cp-art, body.light .gp-sol { background: #FAFAFA; background-image: none; box-shadow: none; border-color: #E3E3E4; }
 
 /* ---------- cinematic layers (Netflix-documentary pass): vignette + film grain ---------- */
 /* inside #frame: above the slides (z 2), below the logo (z 6); the controls sit outside the frame */
