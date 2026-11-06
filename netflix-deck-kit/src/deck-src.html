@@ -1111,6 +1111,48 @@ button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 .counter-tag { position: fixed; z-index: 5; top: max(14px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); font-size: 12px; font-weight: 700; color: var(--grey-3); letter-spacing: .1em; font-variant-numeric: tabular-nums; transition: opacity .7s var(--ease-out); }
 .single .dots, .single .counter-tag { display: none; }
 
+/* ---------- Netflix pass, phase 2: chapter cards (section dividers) ---------- */
+.slide.divider .arc { display: none; }
+.slide.divider .dv { grid-template-columns: minmax(0, 1fr) 470px; gap: 80px; }
+.slide.divider .dv-main { position: relative; display: block; min-height: 560px; display: flex; align-items: center; }
+/* the chapter number becomes a giant outlined numeral behind the title */
+.slide.divider .dv-num { position: absolute; left: -30px; top: 50%; margin-top: -.4em; z-index: 0; font-size: 640px; line-height: .8; letter-spacing: -.06em;
+  color: transparent; -webkit-text-stroke: 2px rgba(199, 0, 11, .45); pointer-events: none; }
+.slide.divider .dv-text { position: relative; z-index: 1; gap: 26px; padding-left: 210px; }
+.slide.divider .dv-label { font-size: 20px; letter-spacing: .35em; color: var(--grey-3); }
+.slide.divider .dv-rule { width: 96px; height: 2px; }
+.slide.divider .dv-title { font-size: 92px; line-height: .98; letter-spacing: -.03em; text-transform: uppercase; color: var(--white); text-wrap: balance; }
+.slide.divider.active .dv-title { animation: chapter-title var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms); }
+.slide.divider.active .dv-num { animation: chapter-num 2.5s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms); }
+@keyframes chapter-title { from { opacity: 0; transform: translateY(16px); letter-spacing: .02em; } }
+@keyframes chapter-num { from { opacity: 0; transform: scale(1.04); } }
+/* episode list */
+.slide.divider .dv-list { padding-left: 40px; gap: 20px; }
+.slide.divider .dv-list li { font-size: 24px; font-weight: 400; color: var(--grey-2); gap: 22px; }
+.slide.divider .dv-list li span { width: 32px; height: auto; border: 0; border-radius: 0; place-items: center start; font-size: 18px; font-weight: 700; letter-spacing: .1em; color: var(--grey-2); background: none; }
+.slide.divider .dv-list li.done, .slide.divider .dv-list li.done span { color: var(--grey-3); }
+.slide.divider .dv-list li.now { font-size: 30px; font-weight: 700; color: var(--white); }
+.slide.divider .dv-list li.now span { background: none; color: var(--red); font-size: 22px; }
+.slide.divider .dv-list li.now::before { left: -42px; width: 3px; }
+/* light sweep and a slow warm light leak behind the title */
+.slide.divider.active .dv-sweep { animation: sweep 2.5s var(--ease-out) .3s both; }
+.slide.divider::after, .slide.hero-slide::after { content: ""; position: absolute; left: 6%; top: 18%; width: 1100px; height: 700px; border-radius: 50%; pointer-events: none; z-index: 0;
+  background: radial-gradient(closest-side, rgba(255, 190, 140, .06), transparent); }
+.slide.divider.active::after, .slide.hero-slide.active::after { animation: leak 14s ease-in-out infinite alternate; }
+@keyframes leak { from { transform: translate(-60px, 20px); } to { transform: translate(120px, -30px); } }
+/* letterbox bars: slide in on chapter cards and hero number slides only (below the logo) */
+.lb { position: absolute; left: 0; right: 0; height: 40px; z-index: 5; background: var(--film); pointer-events: none; transition: transform .6s var(--ease-out); }
+.lb.top { top: 0; transform: translateY(-100%); }
+.lb.bottom { bottom: 0; transform: translateY(100%); }
+.frame:has(.slide.divider.active, .slide.hero-slide.active) .lb { transform: none; }
+body.lite .lb { transition-duration: .15s; }
+body.lite .slide.divider.active .dv-title, body.lite .slide.divider.active .dv-num { animation: rise-lite .35s var(--ease-out) both; }
+body.lite .slide.divider.active::after, body.lite .slide.hero-slide.active::after, body.lite .slide.divider.active .dv-sweep { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .lb { transition: none; }
+  .slide.divider.active .dv-title, .slide.divider.active .dv-num, .slide.divider.active::after, .slide.hero-slide.active::after, .slide.divider.active .dv-sweep { animation: none !important; }
+}
+
 /* ---------- cinematic layers (Netflix-documentary pass): vignette + film grain ---------- */
 /* inside #frame: above the slides (z 2), below the logo (z 6); the controls sit outside the frame */
 .fx { position: absolute; inset: 0; pointer-events: none; transition: opacity var(--t-fast) var(--ease-out); }
@@ -1174,7 +1216,7 @@ body.lite .slide.active .arc { animation-duration: 1.2s; }
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">1</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 1 of 6</span><h2 class="dv-title rise" style="--d:420">Self-introduction</h2></div>
+          <div class="dv-text"><span class="eyebrow dv-label rise" style="--d:300">Chapter 1</span><i class="rule dv-rule" style="--d:380" aria-hidden="true"></i><h2 class="dv-title rise" style="--d:420">Self-introduction</h2></div>
         </div>
         <ol class="dv-list"><li class="now" style="--i:0"><span>1</span>Self-introduction</li><li class="" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="" style="--i:2"><span>3</span>RTS role</li><li class="" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1244,7 +1286,7 @@ body.lite .slide.active .arc { animation-duration: 1.2s; }
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">2</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 2 of 6</span><h2 class="dv-title rise" style="--d:420">The question I&rsquo;m always asked</h2></div>
+          <div class="dv-text"><span class="eyebrow dv-label rise" style="--d:300">Chapter 2</span><i class="rule dv-rule" style="--d:380" aria-hidden="true"></i><h2 class="dv-title rise" style="--d:420">The question I&rsquo;m always asked</h2></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="now" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="" style="--i:2"><span>3</span>RTS role</li><li class="" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1644,7 +1686,7 @@ body.lite .slide.active .arc { animation-duration: 1.2s; }
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">3</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 3 of 6</span><h2 class="dv-title rise" style="--d:420">RTS role</h2></div>
+          <div class="dv-text"><span class="eyebrow dv-label rise" style="--d:300">Chapter 3</span><i class="rule dv-rule" style="--d:380" aria-hidden="true"></i><h2 class="dv-title rise" style="--d:420">RTS role</h2></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="now" style="--i:2"><span>3</span>RTS role</li><li class="" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1708,7 +1750,7 @@ body.lite .slide.active .arc { animation-duration: 1.2s; }
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">4</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 4 of 6</span><h2 class="dv-title rise" style="--d:420">Training plan</h2></div>
+          <div class="dv-text"><span class="eyebrow dv-label rise" style="--d:300">Chapter 4</span><i class="rule dv-rule" style="--d:380" aria-hidden="true"></i><h2 class="dv-title rise" style="--d:420">Training plan</h2></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="done" style="--i:2"><span>3</span>RTS role</li><li class="now" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1785,7 +1827,7 @@ body.lite .slide.active .arc { animation-duration: 1.2s; }
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">5</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 5 of 6</span><h2 class="dv-title rise" style="--d:420">Customer visits</h2></div>
+          <div class="dv-text"><span class="eyebrow dv-label rise" style="--d:300">Chapter 5</span><i class="rule dv-rule" style="--d:380" aria-hidden="true"></i><h2 class="dv-title rise" style="--d:420">Customer visits</h2></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="done" style="--i:2"><span>3</span>RTS role</li><li class="done" style="--i:3"><span>4</span>Training plan</li><li class="now" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1947,7 +1989,7 @@ body.lite .slide.active .arc { animation-duration: 1.2s; }
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">6</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 6 of 6</span><h2 class="dv-title rise" style="--d:420">Career plan</h2></div>
+          <div class="dv-text"><span class="eyebrow dv-label rise" style="--d:300">Chapter 6</span><i class="rule dv-rule" style="--d:380" aria-hidden="true"></i><h2 class="dv-title rise" style="--d:420">Career plan</h2></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="done" style="--i:2"><span>3</span>RTS role</li><li class="done" style="--i:3"><span>4</span>Training plan</li><li class="done" style="--i:4"><span>5</span>Customer visits</li><li class="now" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -2083,6 +2125,7 @@ body.lite .slide.active .arc { animation-duration: 1.2s; }
     <img class="tlogo bottom rise" style="--d:1200" src="__LOGOW__" alt="Mindray">
   </section>
 </main>
+<div class="lb top" aria-hidden="true"></div><div class="lb bottom" aria-hidden="true"></div>
 <div class="fx fx-vignette" aria-hidden="true"></div>
 <div class="fx fx-grain" aria-hidden="true"></div>
 <img class="brand" src="__LOGO__" alt="Mindray">
