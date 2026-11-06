@@ -879,11 +879,6 @@ body.lite .cp-art * { animation-duration: .01s !important; }
 .slide.divider.active .dv-sweep { animation: sweep 2.6s cubic-bezier(.45, 0, .2, 1) .3s both; }
 @keyframes sweep { to { transform: translateX(60%); } }
 .slide.divider .dv-title { font-size: 120px; }
-/* glass depth on key cards */
-.vx-side, .tp-row, .tp-list, .cp-art, .nc-a, .nc-m, .gp-sol, .vt-list li, .card, .rm-card::before {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 24px 60px -28px rgba(0,0,0,.55); }
-body.light .vx-side, body.light .tp-row, body.light .tp-list, body.light .cp-art, body.light .nc-a, body.light .nc-m, body.light .gp-sol, body.light .vt-list li, body.light .card {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 22px 50px -26px rgba(20,20,30,.28); background-image: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,0) 40%); }
 /* slow cinematic zoom on visit photos (drawings stay still) */
 .slide.active .vt-photo img, .slide.active .vt-cell:not(.vt-contain) img { animation: kb 16s cubic-bezier(.2, 0, .2, 1) both; }
 @keyframes kb { from { transform: scale(1); } to { transform: scale(1.07); } }
@@ -898,17 +893,6 @@ body.editing [contenteditable] { outline: 1px dashed rgba(var(--tint), .28); out
 body.editing [contenteditable]:hover { outline-color: rgba(var(--tint), .55); }
 body.editing [contenteditable]:focus { outline: 2px solid var(--red); background: rgba(var(--tint), .04); }
 .ctrl#edit[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
-
-
-/* ---------- light theme (brand white) ---------- */
-body.light { --stage: #FFFFFF; --white: #1F1D1C; --grey-4: #3E3A39; --grey-3: #6B6A6A; --grey-2: #A3A2A2; --grey-1: #E1E2E2; --tint: 0, 0, 0; background: #E9E9EA; }
-body.light .card { background: #FAFAFA; }
-body.light .art { background: radial-gradient(70% 70% at 50% 45%, #FFFFFF, transparent 75%), #F3F3F4; border-color: #E6E6E7; }
-body.light .art .wall-in { stroke: #FFFFFF; }
-body.light .art .tower rect { fill: #FFFFFF; }
-body.light .stage .pool { opacity: .35; }
-body.light .ctrl { background: rgba(255, 255, 255, .88); }
-body.light .counter-tag { color: var(--grey-3); }
 
 
 /* ---------- template slides: cover + thank you (Mindray Wrap Up Review template) ---------- */
@@ -1123,6 +1107,169 @@ body.lite .slide.active .arc { animation-duration: 1s; }
   .slide.active .rise, .slide.active .zoom, .slide.active .pop, .slide.active .rule, .slide.active .node i, .slide.active .node::after,
   .slide.active .stage *, .slide.active .arc { animation: none !important; }
 }
+
+/* =====================================================================
+   EXPLAINER PASS: paper desk, marker, red pen, tape, stickers, typewriter
+   Everything below overrides the approved layout. Content and clicks unchanged.
+   ===================================================================== */
+@font-face { font-family: "Deck Head"; src: url(__FONT_OSWALD_700__) format("woff2"); font-weight: 700; font-display: block; }
+@font-face { font-family: "Deck Head"; src: url(__FONT_OSWALD_500__) format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: "Deck Type"; src: url(__FONT_TYPE_400__) format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Deck Type"; src: url(__FONT_TYPE_700__) format("woff2"); font-weight: 700; font-display: block; }
+@font-face { font-family: "Deck Hand"; src: url(__FONT_HAND__) format("woff2"); font-weight: 400; font-display: block; }
+
+:root {
+  --paper: #F0EADE; --card: #FBF8F1; --kraft: #D8C7A6; --ink: #1E1B18; --ink2: #5B554D;
+  --marker: rgba(255, 214, 0, .85); --tape: rgba(232, 220, 190, .78);
+  --lift: 0 18px 40px -18px rgba(60, 40, 10, .45), 0 2px 0 rgba(0, 0, 0, .04);
+  --head: "Deck Head", "Myriad Pro", Arial, sans-serif; --type: "Deck Type", "Courier New", monospace; --hand: "Deck Hand", "Comic Sans MS", cursive;
+  --spring: cubic-bezier(.34, 1.5, .64, 1);
+  --sticker: drop-shadow(0 0 0 #fff) drop-shadow(6px 0 0 #fff) drop-shadow(-6px 0 0 #fff) drop-shadow(0 -6px 0 #fff) drop-shadow(0 6px 0 #fff) drop-shadow(10px 18px 18px rgba(60, 40, 10, .35));
+  /* the approved deck's tokens, re-pointed so every existing rule draws in ink on paper */
+  --white: var(--ink); --grey-4: #3E3A39; --grey-3: var(--ink2); --grey-2: #8C8478; --grey-1: #CFC5B3; --tint: 30, 27, 24; --stage: var(--paper);
+  color-scheme: light;
+}
+/* L key: charcoal paper */
+body.light {
+  --paper: #2A2724; --card: #36322D; --kraft: #4E4336; --ink: #F3EEE4; --ink2: #BDB5A8; --tape: rgba(205, 195, 170, .5);
+  --lift: 0 18px 40px -18px rgba(0, 0, 0, .75), 0 2px 0 rgba(0, 0, 0, .2);
+  --white: var(--ink); --grey-4: #DCD6CC; --grey-3: var(--ink2); --grey-2: #8C8478; --grey-1: #4A443E; --tint: 243, 238, 228;
+  color-scheme: dark;
+}
+body { background: #000; }
+/* one 1920px tile of the texture covers the stage, so no tiling seam shows */
+.frame { background: var(--paper) url(__PAPER__) center / 1920px 1920px; }
+body.light .frame { background-blend-mode: multiply; }
+.slide { font-family: var(--head); color: var(--ink); }
+
+/* vignette: subtle, never over the company images or the template red slides */
+.vx-vig { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: opacity .35s;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 60%, rgba(80, 60, 30, .18)); }
+body.light .vx-vig { background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0, 0, 0, .35)); }
+.frame:has(.slide.img-slide.active) .vx-vig, .frame:has(.slide.redbg.active) .vx-vig { opacity: 0; }
+
+/* retire the approved deck's decorations */
+.arc, .hr-glow, .dv-sweep, .slide.intro .stage .glow, .slide.intro .stage .beam, .slide.intro .stage .floor, .slide.intro .stage .pool, .stage .figure .cast { display: none !important; }
+.slide.why::before, .slide.intro::before { display: none; }
+
+/* slide change: a quick camera move over the desk */
+.slide { transform: translateX(60px); filter: none; transition: opacity .6s var(--ease-out), transform .6s var(--ease-out), visibility 0s linear .6s; }
+.slide.active { transform: none; filter: none; transition: opacity .6s var(--ease-out), transform .6s var(--ease-out), visibility 0s; }
+.slide.leaving { transform: translateX(-60px); }
+.slide.leaving.back { transform: translateX(60px); }
+@keyframes zoom { from { opacity: 0; transform: scale(1.06) rotate(-1.5deg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+
+/* ---------- signature elements ---------- */
+/* typewriter tag */
+.slide .eyebrow { display: inline-block; font-family: var(--type); font-weight: 700; font-size: 24px; line-height: 1.25; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--paper); background: var(--ink); padding: 6px 14px 5px; }
+.slide .eyebrow:has(.abt) { color: var(--ink); background: var(--card); box-shadow: inset 0 0 0 2px var(--ink); }
+.slide .kicker { gap: 0; }
+.slide .kicker .rule { display: none; }
+/* slide titles */
+.slide .why-title { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 120px; line-height: .95; letter-spacing: 0; color: var(--ink); }
+/* yellow marker: sweeps in behind key words (works across line breaks) */
+.hl, .slide .why-title .r, .slide .vx-title > span:last-child, .vx-side p b, .slide .hr-line .r, .slide .gr-take b {
+  color: inherit; background: linear-gradient(var(--marker), var(--marker)) no-repeat 0 82% / 100% 64%;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 .1em; margin: 0 -.06em; }
+.slide.active .hl, .slide.active .why-title .r, .slide.active .vx-title > span:last-child, .slide.active .vx-side p b, .slide.active .hr-line .r, .slide.active .gr-take b { animation: marker .7s var(--ease-out) .4s both; }
+.slide.active [data-step]:not(.shown) .hl, .slide.active [data-step]:not(.shown) b, .slide.active .hr-line:not(.shown) .r, .slide.active .gr-take:not(.shown) b { animation: none; background-size: 0% 64%; }
+@keyframes marker { from { background-size: 0% 64%; } }
+.vx-title > span:last-child .r { color: inherit; background: none; padding: 0; margin: 0; }
+/* red pen: inline SVG paths with pathLength="1" draw themselves */
+.pen { position: absolute; overflow: visible; pointer-events: none; }
+.pen path, .pen ellipse, .pen circle { fill: none; stroke: var(--red); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.slide.active .pen path, .slide.active .pen ellipse, .slide.active .pen circle { animation: pen 1s ease-out .9s forwards; }
+.slide.active [data-step]:not(.shown) .pen path, .slide.active [data-step]:not(.shown) .pen ellipse { animation: none; }
+@keyframes pen { to { stroke-dashoffset: 0; } }
+/* paper card + tape */
+.vx-card { position: relative; background: var(--card); box-shadow: var(--lift); transform: rotate(var(--rot, 0deg)); }
+.taped::after { content: ""; position: absolute; z-index: 5; top: -24px; left: 50%; width: 160px; height: 46px; margin-left: -80px; background: var(--tape);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12); clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(-3deg); }
+/* handwritten note */
+.hand { font-family: var(--hand); color: var(--red); transform: rotate(-4deg); }
+/* cards, photos and list items drop onto the desk with a tiny rotate settle */
+.slide [data-step].shown { animation: drop .7s var(--spring) both; }
+@keyframes drop { from { opacity: 0; transform: translateY(-36px) rotate(calc(var(--rot, 0deg) + 3deg)); } }
+
+/* soft motion (M) and reduced motion: everything near-instant */
+body.lite .slide, body.lite .slide.active { transition-duration: .15s !important; transition-delay: 0s !important; }
+body.lite .slide *, body.lite .slide *::before, body.lite .slide *::after { animation-duration: .01s !important; animation-delay: 0s !important; }
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide.active { transition-duration: .15s !important; transition-delay: 0s !important; transform: none !important; }
+  .slide *, .slide *::before, .slide *::after { animation-duration: .01s !important; animation-delay: 0s !important; }
+}
+
+/* charcoal: marked words stay dark on the yellow; small coloured labels get a light tag so red/blue stay readable */
+body.light .hl, body.light .slide .why-title .r, body.light .slide .vx-title > span:last-child, body.light .vx-side p b, body.light .slide .hr-line .r, body.light .slide .gr-take b { color: #1E1B18; }
+body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role .who { align-self: flex-start; background: #F3EEE4; padding: 3px 10px 2px; }
+/* =============== SLIDE LAYOUTS =============== */
+/* ---------- chapter cards (section dividers 2, 4, 19, 32, 35, 46) ---------- */
+.slide.divider { padding: 0; }
+.slide.divider > .fit { position: absolute; inset: 0; margin: 0; max-width: none; display: block; }
+.slide.divider .dv, .slide.divider .dv-main { display: block; }
+/* giant red number, paper-textured; padding keeps the glyph from clipping */
+.slide.divider .dv-num { position: absolute; left: 70px; top: 120px; font-family: var(--head); font-weight: 700; font-size: 700px; line-height: .8; letter-spacing: 0;
+  padding: .02em .06em .08em; color: transparent; background: url(__PAPER__) center / 900px 900px, var(--red); background-blend-mode: multiply;
+  -webkit-background-clip: text; background-clip: text; transform-origin: left center; }
+.slide.divider .dv-text { position: absolute; left: 600px; right: 100px; top: 140px; display: flex; flex-direction: column; align-items: flex-start; gap: 26px; }
+.slide.divider .dv-title { margin: 0; font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 170px; line-height: .92; letter-spacing: 0; color: var(--ink); text-wrap: balance; }
+.slide.divider .pen-ul { position: relative; display: block; width: 900px; height: 40px; margin-top: -4px; }
+.slide.divider .dv-list { position: absolute; left: 600px; right: 100px; bottom: 100px; display: flex; flex-flow: row wrap; gap: 14px 16px; margin: 0; padding: 0; border: 0; list-style: none; }
+.slide.divider .dv-list li { display: inline-flex; gap: 14px; align-items: baseline; font-family: var(--type); font-weight: 400; font-size: 30px; line-height: 1.2; letter-spacing: 0;
+  color: var(--ink2); border: 2px dashed var(--ink2); padding: 6px 16px; }
+.slide.divider .dv-list li span { all: unset; font: inherit; color: inherit; }
+.slide.divider .dv-list li.done { color: var(--ink2); }
+.slide.divider .dv-list li.now { font-size: 32px; font-weight: 700; color: var(--paper); background: var(--ink); border: 2px solid var(--ink); }
+.slide.divider .dv-list li::before { display: none; }
+
+/* ---------- work cultures (12 to 17): two taped cards, Abbott vs Mindray ---------- */
+.slide.why:has(.vx) { padding: 0; }
+.slide.why:has(.vx) > .fit { position: absolute; inset: 0; margin: 0; max-width: none; display: block; }
+.slide.why:has(.vx) .kicker { position: absolute; left: 110px; top: 66px; }
+.slide.why:has(.vx) .vx-title { position: absolute; left: 110px; top: 118px; margin: 0; display: block; font-size: 140px; }
+.vx-title .vx-ico { display: none; }
+.slide .vx { position: absolute; left: 110px; right: 110px; top: 340px; bottom: 120px; margin: 0; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr); align-items: stretch; }
+.slide .vx-side { position: relative; overflow: visible; display: flex; flex-direction: column; justify-content: flex-start; gap: 22px; padding: 56px 60px 40px;
+  background: var(--card); border: 0; border-radius: 2px; box-shadow: var(--lift); }
+.slide .vx-side.ab { --rot: -1.6deg; transform: rotate(-1.6deg); }
+.slide .vx-side.mr { --rot: 1.2deg; transform: rotate(1.2deg); }
+.slide .vx-side::before { content: ""; position: absolute; z-index: 5; top: -24px; left: 50%; right: auto; width: 160px; height: 46px; margin-left: -80px; border-radius: 0;
+  background: var(--tape) !important; box-shadow: 0 1px 3px rgba(0, 0, 0, .12); clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(-3deg); animation: none !important; }
+.slide .vx-who { order: 1; font-family: var(--type); font-weight: 700; font-size: 30px; letter-spacing: .2em; }
+.slide .vx-side p { order: 2; margin: 0; font-family: var(--head); font-weight: 500; font-size: 64px; line-height: 1.08; letter-spacing: 0; color: var(--ink); text-wrap: pretty; }
+.slide .vx-side p b { font-weight: 500; color: var(--ink); }
+.slide .vx-side .va { order: 3; margin: auto -10px 0; height: 210px; background: none; }
+.slide .vx-vs { align-self: center; justify-self: center; width: auto; height: auto; border: 0; background: none; border-radius: 0;
+  font-family: var(--hand); font-size: 100px; font-weight: 400; letter-spacing: 0; text-transform: lowercase; color: var(--ink); transform: rotate(-6deg); }
+
+/* ---------- customer visits (37 to 45): huge site name, collage left, big "What I did" right ---------- */
+.slide.why:has(.vt-side) { padding: 0; }
+.slide.why:has(.vt-side) > .fit { position: absolute; inset: 0; margin: 0; max-width: none; display: block; }
+.slide.why:has(.vt-side) .kicker { position: absolute; left: 110px; top: 66px; }
+.slide.why:has(.vt-side) .why-title { position: absolute; left: 110px; right: 100px; top: 112px; margin: 0; font-size: 170px; line-height: .92; }
+.slide .vt { position: absolute; inset: 0; display: block; margin: 0; }
+.slide .vt-photo, .slide .vt-gal { position: absolute; left: 90px; top: 330px; width: 1000px; height: 690px; margin: 0; border: 0; border-radius: 0; box-shadow: none; overflow: visible; }
+.slide .vt-side { position: absolute; left: 1160px; right: 100px; top: 350px; bottom: 100px; display: flex; flex-direction: column; }
+.slide .vt-side h4 { align-self: flex-start; margin: 0 0 26px; font-family: var(--type); font-weight: 700; font-size: 24px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--paper); background: var(--ink); padding: 6px 14px 5px; }
+.slide .vt-list { gap: 30px; }
+.slide .vt-list li, .slide .vt.sm .vt-list li { display: flex; gap: 22px; align-items: baseline; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+  font-family: var(--head); font-weight: 500; font-size: 54px; line-height: 1.06; letter-spacing: 0; color: var(--ink); }
+.slide .vt-list li i { flex: none; width: 30px; height: 6px; margin: 0; border-radius: 3px; background: var(--red); transform: translateY(-14px) rotate(-6deg); }
+.slide .vs-note { margin: auto 0 0; font-family: var(--hand); font-size: 40px; line-height: 1.25; color: var(--red); transform: rotate(-3deg); transform-origin: left center; }
+.slide .vs-note .ico { display: none; }
+.slide .vs-note.shown { animation: drop .7s var(--spring) both; }
+/* cut-out sticker on kraft paper (37 to 40) */
+.slide .vt-cutout .vt-kraft { position: absolute; left: 160px; top: 0; width: 820px; height: 520px; background: var(--kraft); transform: rotate(2deg); box-shadow: 0 14px 30px -14px rgba(60, 40, 10, .4); }
+.slide .vt-cutout .vt-kraft::after { content: ""; position: absolute; top: -22px; left: 260px; width: 150px; height: 44px; background: var(--tape); box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(-2deg); }
+.slide .vt-photo img.vt-cut { position: absolute; left: 30px; bottom: 0; width: auto; height: 660px; max-width: 980px; object-fit: contain; filter: var(--sticker); animation: none !important; }
+.slide.active .vt-cutout .vt-cut { animation: stick .8s var(--spring) .45s both !important; }
+@keyframes stick { from { opacity: 0; transform: translateY(-30px) rotate(2deg) scale(1.02); } }
+
+/* =============== /EXPLAINER PASS =============== */
 </style>
 </head>
 <body>
@@ -1220,7 +1367,7 @@ body.lite .slide.active .arc { animation-duration: 1s; }
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">2</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 2 of 6</span><h2 class="dv-title rise" style="--d:420">The question I&rsquo;m always asked</h2></div>
+          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 2 of 6</span><h2 class="dv-title rise" style="--d:420">The question I&rsquo;m <span class="hl">always asked</span></h2><svg class="pen pen-ul" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 28 C 180 16, 400 24, 620 20 S 850 8, 894 26"/></svg></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="now" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="" style="--i:2"><span>3</span>RTS role</li><li class="" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1803,7 +1950,7 @@ body.lite .slide.active .arc { animation-duration: 1s; }
       <div class="kicker"><i class="rule" style="--d:100"></i><span class="eyebrow rise" style="--d:150">Customer visit · 2 of 9</span></div>
       <h2 class="why-title zoom" style="--d:250">KIMS</h2>
       <div class="vt">
-        <figure class="vt-photo rise" style="--d:450"><img src="__V2__" alt="" style="object-position:center 25%"></figure>
+        <figure class="vt-photo vt-cutout"><i class="vt-kraft" aria-hidden="true"></i><img class="vt-cut" src="__V2CUT__" alt=""></figure>
         <div class="vt-side"><h4>What I did</h4><ul class="vt-list"><li class="step" data-step="1"><i></i>InnoLab software upgrade</li><li class="step" data-step="2"><i></i>Reagent management feature implementation</li></ul><p class="vs-note step" data-step="3"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="16.500" cy="9" r="2.500"/><path d="M3.500 20v-1a5 5 0 0 1 10 0v1M13.500 20v-.500a3.500 3.500 0 0 1 7 0v.500"/></svg></span>Visited with Eng. Mohammad Shahbal and the application team</p></div>
       </div>
     </div>
@@ -2059,6 +2206,7 @@ body.lite .slide.active .arc { animation-duration: 1s; }
     <img class="tlogo bottom rise" style="--d:1200" src="__LOGOW__" alt="Mindray">
   </section>
 </main>
+<div class="vx-vig" aria-hidden="true"></div>
 <img class="brand" src="__LOGO__" alt="Mindray">
 </div>
 <script>(function(){var f=document.getElementById('frame');function fit(){var v=window.visualViewport,w=document.documentElement.clientWidth||innerWidth,h=document.documentElement.clientHeight||innerHeight;if(v&&v.scale===1){w=Math.min(w,v.width);h=Math.min(h,v.height);}var k=Math.min(w/1920,h/1080);f.style.transform='translate(-50%,-50%) scale('+k+')';}addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,250);});if(window.visualViewport)visualViewport.addEventListener('resize',fit);fit();})();</script>
@@ -2071,7 +2219,7 @@ body.lite .slide.active .arc { animation-duration: 1s; }
     <button class="ctrl" id="edit" type="button" aria-pressed="false" title="Edit any text on the slides">Edit</button>
     <button class="ctrl" id="savecopy" type="button" hidden title="Download a copy with your edits">Save copy</button>
     <button class="ctrl" id="resetedits" type="button" hidden title="Remove all edits">Reset</button>
-    <button class="ctrl" id="theme" type="button" aria-pressed="false" title="Switch between dark and light slides">Light</button>
+    <button class="ctrl" id="theme" type="button" aria-pressed="false" title="Switch between paper and charcoal paper">Charcoal</button>
     <button class="ctrl" id="replay" type="button">Replay</button>
     <button class="ctrl" id="fs" type="button">Full screen</button>
   </div>
@@ -2148,17 +2296,17 @@ body.lite .slide.active .arc { animation-duration: 1s; }
   // dark is the default; slides marked data-dark (the photo introduction) always show in dark
   var userLight = false;
   function applyTheme() {
-    var s = slides[current], light = userLight && !(s && s.hasAttribute('data-dark'));
+    var light = userLight;   // paper is the default; L switches every slide to charcoal paper (no forced-dark slides any more)
     document.body.classList.toggle('light', light);
   }
   function setTheme(light, quiet) {
     userLight = light; applyTheme();
-    if (themeBtn) { themeBtn.textContent = light ? 'Dark' : 'Light'; themeBtn.setAttribute('aria-pressed', light ? 'true' : 'false'); }
-    try { localStorage.setItem('deckTheme3', light ? 'light' : 'dark'); } catch (e) {}
-    if (!quiet) window.deckToast(light ? 'Light theme: white slides (the introduction stays dark).' : 'Dark theme: black slides.');
+    if (themeBtn) { themeBtn.textContent = light ? 'Paper' : 'Charcoal'; themeBtn.setAttribute('aria-pressed', light ? 'true' : 'false'); }
+    try { localStorage.setItem('deckThemeVox', light ? 'light' : 'dark'); } catch (e) {}
+    if (!quiet) window.deckToast(light ? 'Charcoal paper theme.' : 'Paper theme.');
   }
   function toggleTheme() { setTheme(!userLight); }
-  try { setTheme(localStorage.getItem('deckTheme3') === 'light', true); } catch (e) { setTheme(false, true); }
+  try { setTheme(localStorage.getItem('deckThemeVox') === 'light', true); } catch (e) { setTheme(false, true); }
   function toggleFs() {
     var d = document, el = d.documentElement;
     var blocked = 'Full screen is blocked in this viewer. Open the file in Chrome or Edge on a computer, or press F11.';

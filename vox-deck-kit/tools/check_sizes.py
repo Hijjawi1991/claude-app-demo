@@ -7,7 +7,7 @@ in order, and reports:
   smaller : words rendered smaller than in the approved deck (tolerance 0.5px)
   hidden  : words present in the approved deck but invisible in the new one
   min     : smallest text size on the new slide (px at 1920x1080)
-  fill    : height of the area covered by text and images, as % of the slide height
+  fill    : height of the area covered by text, images, drawings and cards, as % of the slide height
 SVG text is ignored (drawings may be redrawn). Exit code 1 if any slide has smaller or hidden words."""
 import asyncio, os, sys
 from collections import defaultdict
@@ -31,7 +31,11 @@ JS = """() => {
     for (const w of t.split(' ')) words.push([w, vis ? size : 0]);
     if (vis) boxes.push([rr.top, rr.bottom]);
   }
-  slide.querySelectorAll('img').forEach(i => { const b = i.getBoundingClientRect(); if (b.width > 40 && b.height > 40 && +getComputedStyle(i).opacity > 0.05) boxes.push([b.top, b.bottom]); });
+  // images, drawings and paper cards count as content too
+  slide.querySelectorAll('img, svg, *').forEach(i => { const b = i.getBoundingClientRect(), cs = getComputedStyle(i);
+    if (b.width < 40 || b.height < 40 || +cs.opacity < 0.05 || cs.visibility === 'hidden') return;
+    const bg = cs.backgroundColor.match(/[\\d.]+/g), solid = bg && (bg.length < 4 || +bg[3] > 0.5);
+    if (i.tagName === 'IMG' || i.tagName === 'svg' || (solid && b.width * b.height > 40000 && b.height < sr.height * .98)) boxes.push([b.top, b.bottom]); });
   const top = Math.max(sr.top, Math.min(...boxes.map(b => b[0]))), bot = Math.min(sr.bottom, Math.max(...boxes.map(b => b[1])));
   return { words, fill: boxes.length ? (bot - top) / sr.height : 0, k };
 }"""
