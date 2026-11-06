@@ -1233,6 +1233,13 @@ body.light .tp-row { border-bottom-color: #E3E3E4; }
 body.light .tp-list { background: #FAFAFA; border-color: #E3E3E4; }
 body.light .hr-num { background: linear-gradient(180deg, #1F1D1C 35%, #6B6A6A); -webkit-background-clip: text; background-clip: text; }
 
+/* ---------- Netflix pass, phase 6: RTS company images as a document on screen ---------- */
+/* image pixels untouched; centred at 92% on the dark stage with a thin border and a soft shadow; no grain or vignette over them */
+.slide.img-slide .imgs { background: transparent; }
+.slide.img-slide .imgs img { width: 1766px; height: 994px; object-fit: contain; border-radius: 4px; background: #fff;
+  border: 1px solid rgba(var(--tint), .14); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .85), 0 12px 30px -12px rgba(0, 0, 0, .6); }
+body.light .slide.img-slide .imgs img { border-color: #DCDDDD; box-shadow: 0 30px 70px -30px rgba(20, 20, 30, .35); }
+
 /* ---------- cinematic layers (Netflix-documentary pass): vignette + film grain ---------- */
 /* inside #frame: above the slides (z 2), below the logo (z 6); the controls sit outside the frame */
 .fx { position: absolute; inset: 0; pointer-events: none; transition: opacity var(--t-fast) var(--ease-out); }
