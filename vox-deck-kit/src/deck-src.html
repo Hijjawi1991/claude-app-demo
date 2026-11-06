@@ -1456,6 +1456,21 @@ body.light .slide.intro .hello .name { color: #1E1B18; }
 .slide .nc-arrow { width: 170px; height: 34px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 170 34'%3E%3Cpath d='M4 22 C 50 6, 110 30, 160 16 M142 4 L162 16 L140 28' fill='none' stroke='%23C7000B' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
 .slide .nc-arrow::after { display: none; }
 .slide .nc-row.shown .nc-a, .slide .nc-row.shown .nc-m, .slide .nc-row.shown .nc-mid, .slide .nc-row.shown .nc-arrow { animation: none; }
+
+/* ---------- company images (20 to 31): printed sheets taped to the desk ---------- */
+/* image pixels untouched: no texture, vignette or filter over them; plain fade, no scale or slide */
+.slide.img-slide, .slide.img-slide.active, .slide.img-slide.leaving, .slide.img-slide.leaving.back { transform: none !important; }
+.slide.img-slide { background: transparent; transition: opacity .5s ease, visibility 0s linear .5s; }
+.slide.img-slide.active { transition: opacity .5s ease, visibility 0s; }
+.slide.img-slide .imgs { position: absolute; inset: 0; display: grid; place-items: center; background: transparent; }
+.slide.img-slide .imgs img { width: 1728px; height: 972px; object-fit: contain; background: #fff; padding: 0; box-shadow: var(--lift), 0 30px 60px -30px rgba(60, 40, 10, .5); }
+.slide.img-slide .imgs::before, .slide.img-slide .imgs::after { content: ""; position: absolute; z-index: 2; width: 170px; height: 46px; background: var(--tape);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12); clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); }
+/* tape only over the two top corners, outside the image's content */
+.slide.img-slide .imgs::before { left: 60px; top: 38px; transform: rotate(-35deg); }
+.slide.img-slide .imgs::after { right: 60px; top: 38px; transform: rotate(35deg); }
+.slide.img-slide:nth-of-type(odd) .imgs img { transform: rotate(-.6deg); }
+.slide.img-slide:nth-of-type(even) .imgs img { transform: rotate(.5deg); }
 /* =============== /EXPLAINER PASS =============== */
 </style>
 </head>
