@@ -1208,15 +1208,16 @@ body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role
 /* ---------- chapter cards (section dividers 2, 4, 19, 32, 35, 46) ---------- */
 .slide.divider { padding: 0; }
 .slide.divider > .fit { position: absolute; inset: 0; margin: 0; max-width: none; display: block; }
-.slide.divider .dv, .slide.divider .dv-main { display: block; }
+.slide.divider .dv { position: absolute; left: 600px; right: 100px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: stretch; gap: 64px; }
+.slide.divider .dv-main { display: block; }
 /* giant red number, paper-textured; padding keeps the glyph from clipping */
-.slide.divider .dv-num { position: absolute; left: 70px; top: 120px; font-family: var(--head); font-weight: 700; font-size: 700px; line-height: .8; letter-spacing: 0;
+.slide.divider .dv-num { position: absolute; left: -530px; top: 225px; font-family: var(--head); font-weight: 700; font-size: 700px; line-height: .8; letter-spacing: 0;
   padding: .02em .06em .08em; color: transparent; background: url(__PAPER__) center / 900px 900px, var(--red); background-blend-mode: multiply;
   -webkit-background-clip: text; background-clip: text; transform-origin: left center; }
-.slide.divider .dv-text { position: absolute; left: 600px; right: 100px; top: 140px; display: flex; flex-direction: column; align-items: flex-start; gap: 26px; }
+.slide.divider .dv-text { position: static; display: flex; flex-direction: column; align-items: flex-start; gap: 26px; }
 .slide.divider .dv-title { margin: 0; font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 170px; line-height: .92; letter-spacing: 0; color: var(--ink); text-wrap: balance; }
 .slide.divider .pen-ul { position: relative; display: block; width: 900px; height: 40px; margin-top: -4px; }
-.slide.divider .dv-list { position: absolute; left: 600px; right: 100px; bottom: 100px; display: flex; flex-flow: row wrap; gap: 14px 16px; margin: 0; padding: 0; border: 0; list-style: none; }
+.slide.divider .dv-list { position: static; display: flex; flex-flow: row wrap; gap: 14px 16px; margin: 0; padding: 0; border: 0; list-style: none; }
 .slide.divider .dv-list li { display: inline-flex; gap: 14px; align-items: baseline; font-family: var(--type); font-weight: 400; font-size: 30px; line-height: 1.2; letter-spacing: 0;
   color: var(--ink2); border: 2px dashed var(--ink2); padding: 6px 16px; }
 .slide.divider .dv-list li span { all: unset; font: inherit; color: inherit; }
@@ -1269,6 +1270,51 @@ body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role
 .slide.active .vt-cutout .vt-cut { animation: stick .8s var(--spring) .45s both !important; }
 @keyframes stick { from { opacity: 0; transform: translateY(-30px) rotate(2deg) scale(1.02); } }
 
+
+/* ---------- cover + thank you: official Mindray template, kept as approved ---------- */
+.slide.redbg { font-family: var(--font); }
+
+/* ---------- chapter cards: per-title fit ---------- */
+.slide.divider .dv-title .hl { padding: 0 .06em; }
+/* one-line chapter titles go bigger so the card stays full */
+.slide.divider:is([aria-label^='Section 3'], [aria-label^='Section 4'], [aria-label^='Section 5'], [aria-label^='Section 6']) .dv-title { font-size: 210px; }
+
+/* ---------- intro (3): character introduction on the desk ---------- */
+.slide.intro { padding: 0; }
+.slide.intro .stage { position: absolute; left: auto; right: 50px; top: 0; bottom: 0; width: 560px; z-index: 1; }
+.slide.intro .stage::before { content: ""; position: absolute; left: 30px; right: 10px; top: 330px; bottom: 110px; background: var(--kraft); transform: rotate(-2.5deg);
+  box-shadow: 0 14px 30px -14px rgba(60, 40, 10, .45); }
+.slide.intro .stage::after { content: ""; position: absolute; left: 0px; top: auto; bottom: 96px; width: 160px; height: 46px; background: var(--tape); box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(3deg); z-index: 3; }
+.slide.intro .stage .figure { left: 50%; bottom: 100px; height: 950px; z-index: 2; transform: translateX(-50%); }
+.slide.intro .stage .figure img { filter: var(--sticker); }
+@keyframes enter { from { opacity: 0; transform: translateX(-50%) translateY(30px) rotate(2deg); } }
+.slide.intro .copy { position: absolute; left: 100px; top: 44px; width: 1200px; margin: 0; gap: 10px; }
+.slide.intro .kicker .eyebrow { letter-spacing: .12em; }
+.slide.intro .hello { margin: 4px 0 0; font-size: 72px; }
+.slide.intro .hello span:first-child { font-family: var(--head); font-weight: 500; font-size: 72px; line-height: 1; text-transform: uppercase; color: var(--ink2); }
+.slide.intro .hello .name { font-family: var(--head); font-weight: 700; font-size: 124px; line-height: 1; text-transform: uppercase; color: var(--ink); justify-self: start; display: inline;
+  background: linear-gradient(var(--marker), var(--marker)) no-repeat 0 82% / 100% 64%; padding: 0 .1em; margin: 0 -.06em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.slide.active.intro .hello .name { animation: marker .7s var(--ease-out) .7s both; }
+body.light .slide.intro .hello .name { color: #1E1B18; }
+.slide.intro .role { font-family: var(--head); font-weight: 500; font-size: 40px; letter-spacing: .02em; color: var(--ink); margin-top: 6px; }
+.slide.intro .edu { font-family: var(--head); font-weight: 400; font-size: 26px; line-height: 1.2; color: var(--ink2); }
+.slide.intro .copy > .eyebrow { align-self: flex-start; margin-top: 8px; }
+/* career timeline: a taped, typed sheet in two columns; years circled in red pen */
+.slide.intro .journey.tl { position: relative; margin-top: 8px; padding: 26px 30px 22px; background: var(--card); box-shadow: var(--lift); transform: rotate(-.6deg);
+  display: grid; grid-template-rows: repeat(3, auto); grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); grid-auto-rows: auto; gap: 16px 30px; }
+.slide.intro .journey.tl::after { content: ""; position: absolute; top: -22px; left: 46%; width: 160px; height: 44px; background: var(--tape); box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 52%); transform: rotate(-3deg); }
+.slide.intro .journey.tl li { display: grid; grid-template-columns: 100px minmax(0, 1fr); column-gap: 14px; align-items: start; }
+.slide.intro .journey.tl .node, .slide.intro .journey.tl .ico { display: none; }
+.slide.intro .yr { font-family: var(--head); font-weight: 700; font-size: 40px; line-height: 1; color: var(--red); text-align: center; padding: 14px 0 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104 70' preserveAspectRatio='none'%3E%3Cpath d='M58 6C28 4 5 14 4 34s22 31 50 30 46-12 46-30S82 5 52 7 18 18 21 22' fill='none' stroke='%23C7000B' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.slide.intro .journey.tl .txt b { font-family: var(--head); font-weight: 500; font-size: 29px; line-height: 1.08; color: var(--ink); }
+.slide.intro .journey.tl .txt b em { display: block; margin-top: 2px; font-family: var(--type); font-weight: 700; font-size: 18px; letter-spacing: .02em; color: var(--abbott); }
+.slide.intro .journey.tl .txt b em.mr { color: var(--red); }
+.slide.intro .journey.tl .txt .when { font-family: var(--type); font-weight: 700; font-size: 18px; letter-spacing: .04em; color: var(--ink2); margin: 2px 0 3px; }
+.slide.intro .journey.tl .txt span:last-child { font-family: var(--head); font-weight: 400; font-size: 22px; line-height: 1.22; color: var(--ink); max-width: none; }
+.slide.intro .journey.tl li.now .txt b { font-weight: 700; }
 /* =============== /EXPLAINER PASS =============== */
 </style>
 </head>
@@ -1297,7 +1343,7 @@ body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">1</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 1 of 6</span><h2 class="dv-title rise" style="--d:420">Self-introduction</h2></div>
+          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 1 of 6</span><h2 class="dv-title rise" style="--d:420"><span class="hl">Self-introduction</span></h2><svg class="pen pen-ul" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 28 C 180 16, 400 24, 620 20 S 850 8, 894 26"/></svg></div>
         </div>
         <ol class="dv-list"><li class="now" style="--i:0"><span>1</span>Self-introduction</li><li class="" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="" style="--i:2"><span>3</span>RTS role</li><li class="" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1767,7 +1813,7 @@ body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">3</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 3 of 6</span><h2 class="dv-title rise" style="--d:420">RTS role</h2></div>
+          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 3 of 6</span><h2 class="dv-title rise" style="--d:420"><span class="hl">RTS role</span></h2><svg class="pen pen-ul" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 28 C 180 16, 400 24, 620 20 S 850 8, 894 26"/></svg></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="now" style="--i:2"><span>3</span>RTS role</li><li class="" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1831,7 +1877,7 @@ body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">4</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 4 of 6</span><h2 class="dv-title rise" style="--d:420">Training plan</h2></div>
+          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 4 of 6</span><h2 class="dv-title rise" style="--d:420"><span class="hl">Training plan</span></h2><svg class="pen pen-ul" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 28 C 180 16, 400 24, 620 20 S 850 8, 894 26"/></svg></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="done" style="--i:2"><span>3</span>RTS role</li><li class="now" style="--i:3"><span>4</span>Training plan</li><li class="" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -1908,7 +1954,7 @@ body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">5</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 5 of 6</span><h2 class="dv-title rise" style="--d:420">Customer visits</h2></div>
+          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 5 of 6</span><h2 class="dv-title rise" style="--d:420"><span class="hl">Customer visits</span></h2><svg class="pen pen-ul" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 28 C 180 16, 400 24, 620 20 S 850 8, 894 26"/></svg></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="done" style="--i:2"><span>3</span>RTS role</li><li class="done" style="--i:3"><span>4</span>Training plan</li><li class="now" style="--i:4"><span>5</span>Customer visits</li><li class="" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
@@ -2070,7 +2116,7 @@ body.light .slide .vx-who, body.light .slide .gr-who, body.light .slide .nc-role
       <i class="dv-sweep" aria-hidden="true"></i><div class="dv">
         <div class="dv-main">
           <span class="dv-num zoom" style="--d:150">6</span>
-          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 6 of 6</span><h2 class="dv-title rise" style="--d:420">Career plan</h2></div>
+          <div class="dv-text"><span class="eyebrow rise" style="--d:300">Section 6 of 6</span><h2 class="dv-title rise" style="--d:420"><span class="hl">Career plan</span></h2><svg class="pen pen-ul" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 28 C 180 16, 400 24, 620 20 S 850 8, 894 26"/></svg></div>
         </div>
         <ol class="dv-list"><li class="done" style="--i:0"><span>1</span>Self-introduction</li><li class="done" style="--i:1"><span>2</span>The question I&rsquo;m always asked</li><li class="done" style="--i:2"><span>3</span>RTS role</li><li class="done" style="--i:3"><span>4</span>Training plan</li><li class="done" style="--i:4"><span>5</span>Customer visits</li><li class="now" style="--i:5"><span>6</span>Career plan</li><li class="" style="--i:6"><span>7</span>Q&amp;A</li></ol>
       </div>
