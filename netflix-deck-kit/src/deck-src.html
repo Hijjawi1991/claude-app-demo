@@ -8,7 +8,7 @@
 /* Layout: dark stage, text column on the left, portrait panel on the right fading into the stage.
    Brand Book v1.2: red #C7000B, greys #3E3A39 / #727171 / #B5B5B6 / #DCDDDD, white. Type: Myriad Pro, Arial fallback.
    Near-black #0A0A0A is outside the brand book (chosen for the dark look).
-   Netflix-documentary pass (docs/NETFLIX_STYLE.md): off-white text #F2F2F2, secondary grey #9A9A9A, film black #050505.
+   Documentary pass (see the style spec): off-white text #F2F2F2, secondary grey #9A9A9A, film black #050505.
    --white / --grey-3 keep their names so every existing rule picks up the new values; the light theme overrides both. */
 :root {
   --red: #C7000B;
@@ -1111,7 +1111,7 @@ button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 .counter-tag { position: fixed; z-index: 5; top: max(14px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); font-size: 12px; font-weight: 700; color: var(--grey-3); letter-spacing: .1em; font-variant-numeric: tabular-nums; transition: opacity .7s var(--ease-out); }
 .single .dots, .single .counter-tag { display: none; }
 
-/* ---------- Netflix pass, phase 2: chapter cards (section dividers) ---------- */
+/* ---------- documentary pass, phase 2: chapter cards (section dividers) ---------- */
 .slide.divider .arc { display: none; }
 .slide.divider .dv { grid-template-columns: minmax(0, 1fr) 470px; gap: 80px; }
 .slide.divider .dv-main { position: relative; display: block; min-height: 560px; display: flex; align-items: center; }
@@ -1153,7 +1153,7 @@ body.lite .slide.divider.active::after, body.lite .slide.hero-slide.active::afte
   .slide.divider.active .dv-title, .slide.divider.active .dv-num, .slide.divider.active::after, .slide.hero-slide.active::after, .slide.divider.active .dv-sweep { animation: none !important; }
 }
 
-/* ---------- Netflix pass, phase 3: cover, intro, big-question cards, end cards ---------- */
+/* ---------- documentary pass, phase 3: cover, intro, big-question cards, end cards ---------- */
 /* cover + thank you: template red kept; opening-title fade-up instead of a zoom */
 .slide.redbg.active .cv-title, .slide.redbg.active .ty-title { animation: title-up 2.4s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms); }
 @keyframes title-up { from { opacity: 0; transform: translateY(24px); } }
@@ -1193,7 +1193,7 @@ body.lite .slide.rg-slide .rg-a.shown, body.lite .slide.rg-slide .rg-not.shown {
   .slide.redbg.active .cv-title, .slide.redbg.active .ty-title, .slide.qs .q.shown, .slide.rg-slide .rg-a.shown, .slide.rg-slide .rg-not.shown { animation: none !important; }
 }
 
-/* ---------- Netflix pass, phase 4: story slides as documentary interview cards ---------- */
+/* ---------- documentary pass, phase 4: story slides as documentary interview cards ---------- */
 .arc { display: none; }                       /* the Apple-style red curve is retired everywhere */
 .card, .vs-card, .vx-side, .nc-a, .nc-m { border-radius: 10px; border: 1px solid rgba(var(--tint), .09); background: rgba(var(--tint), .025); box-shadow: none; }
 .card::before { display: none; }               /* no red bar on neutral cards: red belongs to Mindray only */
@@ -1209,7 +1209,7 @@ body.light .card, body.light .vs-card, body.light .vx-side, body.light .nc-a, bo
 body.light .art { background: #F4F4F5; border-color: #E6E6E7; }
 body.light .vx-vs, body.light .vsb { background: #FFFFFF; border-color: #E3E3E4; }
 
-/* ---------- Netflix pass, phase 5: numbers as a documentary's on-screen stats ---------- */
+/* ---------- documentary pass, phase 5: numbers as a documentary's on-screen stats ---------- */
 /* 10: thin bars */
 .co-bar { height: 3px; border-radius: 0; }
 .co-row { border-top-color: rgba(var(--tint), .08); }
@@ -1233,14 +1233,14 @@ body.light .tp-row { border-bottom-color: #E3E3E4; }
 body.light .tp-list { background: #FAFAFA; border-color: #E3E3E4; }
 body.light .hr-num { background: linear-gradient(180deg, #1F1D1C 35%, #6B6A6A); -webkit-background-clip: text; background-clip: text; }
 
-/* ---------- Netflix pass, phase 6: RTS company images as a document on screen ---------- */
+/* ---------- documentary pass, phase 6: RTS company images as a document on screen ---------- */
 /* image pixels untouched; centred at 92% on the dark stage with a thin border and a soft shadow; no grain or vignette over them */
 .slide.img-slide .imgs { background: transparent; }
 .slide.img-slide .imgs img { width: 1766px; height: 994px; object-fit: contain; border-radius: 4px; background: #fff;
   border: 1px solid rgba(var(--tint), .14); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .85), 0 12px 30px -12px rgba(0, 0, 0, .6); }
 body.light .slide.img-slide .imgs img { border-color: #DCDDDD; box-shadow: 0 30px 70px -30px rgba(20, 20, 30, .35); }
 
-/* ---------- Netflix pass, phase 7a: customer visits as B-roll with a lower third ---------- */
+/* ---------- documentary pass, phase 7a: customer visits as B-roll with a lower third ---------- */
 /* visit slides are the ones with a "What I did" column (.vt-side) */
 .slide.why:has(.vt-side) { padding: 0; }
 .slide.why:has(.vt-side) > .fit { margin: 0; max-width: none; width: 100%; height: 100%; display: grid; gap: 0;
@@ -1269,7 +1269,7 @@ body.light .slide.why:has(.vt-side) > .fit > .kicker, body.light .slide.why:has(
 .vt.sm .vt-list li i { margin-top: 14px; }
 body.light .vt-list li { background: none; box-shadow: none; border-bottom-color: #E3E3E4; }
 
-/* ---------- Netflix pass, phase 7b: career plan as "what comes next" episode cards ---------- */
+/* ---------- documentary pass, phase 7b: career plan as "what comes next" episode cards ---------- */
 .slide.cp-slide .kicker .eyebrow, .slide.gp-slide .kicker .eyebrow { letter-spacing: .35em; }
 .cp-art { border-radius: 10px; border-color: rgba(var(--tint), .08); background: radial-gradient(70% 70% at 50% 45%, rgba(var(--tint), .035), transparent 75%); box-shadow: none; background-image: none; }
 /* step number as an outlined numeral, like the chapter cards */
@@ -1282,7 +1282,7 @@ body.light .vt-list li { background: none; box-shadow: none; border-bottom-color
 .gp-sol::before { width: 2px; }
 body.light .cp-art, body.light .gp-sol { background: #FAFAFA; background-image: none; box-shadow: none; border-color: #E3E3E4; }
 
-/* ---------- cinematic layers (Netflix-documentary pass): vignette + film grain ---------- */
+/* ---------- cinematic layers (documentary pass): vignette + film grain ---------- */
 /* inside #frame: above the slides (z 2), below the logo (z 6); the controls sit outside the frame */
 .fx { position: absolute; inset: 0; pointer-events: none; transition: opacity var(--t-fast) var(--ease-out); }
 .fx-vignette { z-index: 3; background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .35) 100%); }
